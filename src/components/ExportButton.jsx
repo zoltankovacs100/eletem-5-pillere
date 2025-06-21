@@ -27,7 +27,7 @@ const ExportButton = ({ exportRef }) => {
         onClick={handleExport}
         className="text-white border border-white hover:border-green-600 font-bold py-2 px-4 rounded transition-colors duration-350 mt-15"
       >
-        Export as PNG
+        Export (PNG)
       </button>
     </div>
   );
