@@ -2,40 +2,61 @@ import React, { useState } from 'react';
 import { Range } from 'react-range';
 
 const Scale = ({ scaleName }) => {
-  const [values, setValues] = useState([35, 65]); // [done, wanted]
+  const [values, setValues] = useState([35, 65]);
   const STEP = 1;
   const MIN = 0;
   const MAX = 100;
 
   return (
-    <div className="w-[220px] flex-shrink-0 flex flex-col items-center gap-4 p-4">
+    <div className="w-[220px] flex-shrink-0 flex flex-col items-center gap-4 p-4 ">
 
       {/* Vertical bar */}
-      <div className='border p-10'>
-        <div className="relative w-6 h-64 bg-gray-200 rounded overflow-hidden border">
-        <div
-          className="absolute left-0 w-full bg-green-600"
-          style={{
-            bottom: '0%',
-            height: `${values[0]}%`,
-          }}
-        />
-        <div
-          className="absolute left-0 w-full bg-orange-500"
-          style={{
-            bottom: `${values[0]}%`,
-            height: `${values[1] - values[0]}%`,
-          }}
-        />
-      </div>
+      <div
+        className="border p-10 rounded"
+        style={{
+          backgroundImage: `repeating-linear-gradient(
+      to right,
+      #2d2d2d 0px,
+      #2d2d2d 2px,
+      #1a1a1a 2px,
+      #1a1a1a 6px
+    )`
+        }}
+      >
+
+        <div className="relative w-6 h-64 rounded overflow-hidden border">
+          <div
+            className="absolute left-0 w-full bg-green-600"
+            style={{
+              bottom: '0%',
+              height: `${values[0]}%`,
+            }}
+          />
+          <div
+            className="absolute left-0 w-full bg-orange-500"
+            style={{
+              bottom: `${values[0]}%`,
+              height: `${values[1] - values[0]}%`,
+            }}
+          />
+        </div>
 
 
 
       </div>
-      
+
 
       {/* Inputs + slider */}
-      <div className="flex flex-col gap-4 items-center text-white border p-4">
+      <div className="flex flex-col gap-4 items-center text-white border p-4"
+      style={{
+          backgroundImage: `repeating-linear-gradient(
+      to right,
+      #2d2d2d 0px,
+      #2d2d2d 2px,
+      #1a1a1a 2px,
+      #1a1a1a 6px
+    )`
+        }}>
         <div className="flex gap-4">
           <div className="flex flex-col items-center">
             <label className="text-sm mb-1">Jelenlegi (%)</label>
