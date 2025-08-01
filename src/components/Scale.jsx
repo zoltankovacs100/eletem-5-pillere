@@ -10,7 +10,6 @@ const Scale = ({ scaleName }) => {
   return (
     <div className="w-[220px] flex-shrink-0 flex flex-col items-center gap-4 p-4 ">
 
-      {/* Vertical bar */}
       <div
         className="border p-10 rounded"
         style={{
@@ -40,13 +39,10 @@ const Scale = ({ scaleName }) => {
             }}
           />
         </div>
-
-
-
       </div>
 
 
-      {/* Inputs + slider */}
+      {/* Bemenetek + csúszka */}
       <div className="flex flex-col gap-4 items-center text-white border p-4"
       style={{
           backgroundImage: `repeating-linear-gradient(
@@ -119,8 +115,7 @@ const Scale = ({ scaleName }) => {
         </div>
       </div>
 
-      {/* Title */}
-      <h2 className="text-center text-lg font-semibold text-white">{scaleName}</h2>
+      <h2 className="text-center text-lg font-semibold text-black">{scaleName}</h2>
 
 
     </div>

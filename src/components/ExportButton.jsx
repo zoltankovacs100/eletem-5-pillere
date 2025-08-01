@@ -9,7 +9,7 @@ const ExportButton = ({ exportRef }) => {
       const dataUrl = await toPng(exportRef.current, {
         cacheBust: true,
         pixelRatio: 2,
-        backgroundColor: null // or set manually
+        backgroundColor: null // átlátszó háttér, manuálisan beállítható
       });
 
       const link = document.createElement('a');
