@@ -7,14 +7,14 @@ const Scale = ({ scaleName }) => {
   const MIN = 0;
   const MAX = 100;
 
-  const accentColor = '#01918C';
-  const lightAccentColor = '#02c7c0';
+  const accentColor = '#A9C0D3'; // New blue color
+  const lightAccentColor = '#C5D9Ea'; // Lighter shade of the new blue
   const trackBackgroundColor = '#ccc';
 
   return (
     <div className="w-[250px] flex-shrink-0 flex flex-col items-center gap-4 bg-white p-4 rounded-md shadow-lg">
       
-      {/* Pillar visualization with green border/container */}
+      {/* Pillar visualization with new blue border/container */}
       <div 
         className="rounded-lg"
         style={{
@@ -60,7 +60,7 @@ const Scale = ({ scaleName }) => {
                   values[1],
                 ])
               }
-              className="w-20 border-gray-300 border rounded px-2 py-1 text-center text-gray-800"
+              className="w-24 border-gray-300 border rounded px-2 py-1 text-center text-gray-800"
             />
           </div>
 
@@ -77,7 +77,7 @@ const Scale = ({ scaleName }) => {
                   Math.max(Number(e.target.value), values[0]),
                 ])
               }
-              className="w-20 border-gray-300 border rounded px-2 py-1 text-center text-gray-800"
+              className="w-24 border-gray-300 border rounded px-2 py-1 text-center text-gray-800"
             />
           </div>
         </div>
