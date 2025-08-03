@@ -22,12 +22,13 @@ const ExportButton = ({ exportRef }) => {
   };
 
   return (
-    <div className="text-center">
+    <div className="w-full text-center mt-6">
       <button
         onClick={handleExport}
-        className="text-white border border-white hover:border-green-600 font-bold py-2 px-4 rounded transition-colors duration-350 mt-15"
+        className="text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
+        style={{ backgroundColor: '#01918C' }}
       >
-        Export (PNG)
+        Mentés
       </button>
     </div>
   );

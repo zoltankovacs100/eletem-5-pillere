@@ -11,9 +11,8 @@ function App() {
   const exportRef = useRef();
   return (
 
-        <div ref={exportRef} className="w-full min-h-screen bg-gradient-to-tr from-gray-750 to-gray-700 text-white px-0 py-10 overflow-x-hidden justify-center items-center flex flex-col">
-      <h1 className="text-3xl font-bold text-center mb-8">Életem 5 pillére</h1>
-
+    <div ref={exportRef} className="w-full flex flex-col justify-center items-center" style={{padding: '15px'}}>
+      
       <svg width="100%" viewBox="0 0 1160 60" className="max-w-[1160px] mb-4 mx-auto block justify-center">
         <defs>
           <pattern
@@ -30,13 +29,13 @@ function App() {
         <polygon
           points="0,60 580,0 1160,60"
           fill="url(#roofStripes)"
-          stroke="white"
+          stroke="#212529"
           strokeWidth="2"
         />
       </svg>
-
-      <div className="w-full overflow-x-auto items-center flex justify-center">
-        <div className="flex flex-col lg:flex-row gap-6 px-2">
+      
+      <div className="w-full flex justify-center">
+        <div className="flex flex-col lg:flex-row gap-6">
           <Scale scaleName="Fizikai, egészségi állapot"/>
           <Scale scaleName="Kapcsolatok" />
           <Scale scaleName="Munkával való elégedettség" />
@@ -46,8 +45,6 @@ function App() {
       </div>
 
       <ExportButton exportRef={exportRef}/>
-
-
       
     </div>
   );
