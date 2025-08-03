@@ -11,7 +11,7 @@ function App() {
   const exportRef = useRef();
   return (
 
-        <div ref={exportRef} className="w-full min-h-screen text-white px-0 py-10 overflow-x-hidden justify-center items-center flex flex-col" style={{backgroundColor: '#01918C'}}>
+        <div ref={exportRef} className="w-full min-h-screen bg-gradient-to-tr from-gray-750 to-gray-700 text-white px-0 py-10 overflow-x-hidden justify-center items-center flex flex-col">
       <h1 className="text-3xl font-bold text-center mb-8">Életem 5 pillére</h1>
 
       <svg width="1160" height="60" className="mb-4 mx-auto block justify-center">
