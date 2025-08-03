@@ -11,7 +11,7 @@ function App() {
   const exportRef = useRef();
   return (
 
-    <div ref={exportRef} className="w-full flex flex-col justify-center items-center p-4 pt-8">
+    <div ref={exportRef} className="w-full flex flex-col justify-center items-center p-4 pt-12">
       
       <svg width="100%" viewBox="0 0 1160 60" className="max-w-[1160px] mb-4 mx-auto block justify-center">
         <defs>
