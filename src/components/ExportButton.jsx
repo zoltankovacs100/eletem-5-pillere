@@ -22,7 +22,7 @@ const ExportButton = ({ exportRef }) => {
   };
 
   return (
-    <div className="w-full text-center mt-6">
+    <div className="w-full text-center mt-8">
       <button
         onClick={handleExport}
         className="text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"

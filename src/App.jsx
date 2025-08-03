@@ -11,28 +11,30 @@ function App() {
   const exportRef = useRef();
   return (
 
-    <div ref={exportRef} className="w-full flex flex-col justify-center items-center p-4 pt-12">
+    <div ref={exportRef} className="w-full flex flex-col items-center p-4">
       
-      <svg width="100%" viewBox="0 0 1160 60" className="max-w-[1160px] mb-4 mx-auto block justify-center">
-        <defs>
-          <pattern
-            id="roofStripes"
-            width="6"
-            height="60"
-            patternUnits="userSpaceOnUse"
-          >
-            <rect width="2" height="60" fill="#bbbbbb" />
-            <rect x="2" width="4" height="60" fill="#cccccc" />
-          </pattern>
-        </defs>
+      <div className="w-full h-[80px]">
+        <svg width="100%" viewBox="0 0 1160 60" className="max-w-[1160px] mx-auto block">
+          <defs>
+            <pattern
+              id="roofStripes"
+              width="6"
+              height="60"
+              patternUnits="userSpaceOnUse"
+            >
+              <rect width="2" height="60" fill="#bbbbbb" />
+              <rect x="2" width="4" height="60" fill="#cccccc" />
+            </pattern>
+          </defs>
 
-        <polygon
-          points="0,60 580,0 1160,60"
-          fill="url(#roofStripes)"
-          stroke="#212529"
-          strokeWidth="2"
-        />
-      </svg>
+          <polygon
+            points="0,60 580,0 1160,60"
+            fill="url(#roofStripes)"
+            stroke="#212529"
+            strokeWidth="2"
+          />
+        </svg>
+      </div>
       
       <div className="w-full flex justify-center">
         <div className="flex flex-col lg:flex-row gap-6">
