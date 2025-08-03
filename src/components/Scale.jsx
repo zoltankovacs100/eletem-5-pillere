@@ -7,8 +7,8 @@ const Scale = ({ scaleName }) => {
   const MIN = 0;
   const MAX = 100;
 
-  const accentColor = '#A9C0D3';
-  const lightAccentColor = '#C5D9Ea';
+  const accentColor = '#01918C';
+  const lightAccentColor = '#02c7c0';
   const trackBackgroundColor = '#ccc';
 
   return (
