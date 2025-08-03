@@ -15,10 +15,10 @@ const Scale = ({ scaleName }) => {
         style={{
           backgroundImage: `repeating-linear-gradient(
       to right,
-      #2d2d2d 0px,
-      #2d2d2d 2px,
-      #1a1a1a 2px,
-      #1a1a1a 6px
+      #017a76 0px,
+      #017a76 2px,
+      #01918C 2px,
+      #01918C 6px
     )`
         }}
       >
@@ -47,10 +47,10 @@ const Scale = ({ scaleName }) => {
       style={{
           backgroundImage: `repeating-linear-gradient(
       to right,
-      #2d2d2d 0px,
-      #2d2d2d 2px,
-      #1a1a1a 2px,
-      #1a1a1a 6px
+      #017a76 0px,
+      #017a76 2px,
+      #01918C 2px,
+      #01918C 6px
     )`
         }}>
         <div className="flex gap-4">
@@ -67,7 +67,8 @@ const Scale = ({ scaleName }) => {
                   values[1],
                 ])
               }
-              className="w-20 border rounded px-2 py-1 text-center bg-black text-white"
+              className="w-20 border rounded px-2 py-1 text-center text-white"
+              style={{backgroundColor: '#01918C'}}
             />
           </div>
 
@@ -84,7 +85,8 @@ const Scale = ({ scaleName }) => {
                   Math.max(Number(e.target.value), values[0]),
                 ])
               }
-              className="w-20 border rounded px-2 py-1 text-center bg-black text-white"
+              className="w-20 border rounded px-2 py-1 text-center text-white"
+              style={{backgroundColor: '#01918C'}}
             />
           </div>
         </div>
@@ -115,7 +117,7 @@ const Scale = ({ scaleName }) => {
         </div>
       </div>
 
-      <h2 className="text-center text-lg font-semibold text-black">{scaleName}</h2>
+      <h2 className="text-center text-lg font-semibold text-white">{scaleName}</h2>
 
 
     </div>

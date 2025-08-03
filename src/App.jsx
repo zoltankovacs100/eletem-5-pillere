@@ -11,7 +11,7 @@ function App() {
   const exportRef = useRef();
   return (
 
-    <div ref={exportRef} className="w-full min-h-screen bg-gradient-to-tr from-gray-750 to-gray-700 text-white px-0 py-10 overflow-x-hidden justify-center items-center flex flex-col">
+        <div ref={exportRef} className="w-full min-h-screen text-white px-0 py-10 overflow-x-hidden justify-center items-center flex flex-col" style={{backgroundColor: '#01918C'}}>
       <h1 className="text-3xl font-bold text-center mb-8">Életem 5 pillére</h1>
 
       <svg width="1160" height="60" className="mb-4 mx-auto block justify-center">
@@ -22,8 +22,8 @@ function App() {
             height="60"
             patternUnits="userSpaceOnUse"
           >
-            <rect width="2" height="60" fill="#2d2d2d" />
-            <rect x="2" width="4" height="60" fill="#1a1a1a" />
+            <rect width="2" height="60" fill="#017a76" />
+            <rect x="2" width="4" height="60" fill="#01918C" />
           </pattern>
         </defs>
 
@@ -47,7 +47,7 @@ function App() {
 
       <ExportButton exportRef={exportRef}/>
 
-      
+
       
     </div>
   );
