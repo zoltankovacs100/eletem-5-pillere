@@ -21,8 +21,8 @@ function App() {
             height="60"
             patternUnits="userSpaceOnUse"
           >
-            <rect width="2" height="60" fill="#017a76" />
-            <rect x="2" width="4" height="60" fill="#01918C" />
+            <rect width="2" height="60" fill="#bbbbbb" />
+            <rect x="2" width="4" height="60" fill="#cccccc" />
           </pattern>
         </defs>
 

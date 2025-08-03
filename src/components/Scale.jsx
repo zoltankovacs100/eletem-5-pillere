@@ -18,7 +18,7 @@ const Scale = ({ scaleName }) => {
       <div 
         className="rounded-lg"
         style={{
-          backgroundColor: accentColor,
+          backgroundColor: '#cccccc',
           padding: '15px'
         }}
       >
