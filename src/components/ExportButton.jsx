@@ -12,28 +12,10 @@ const ExportButton = ({ exportRef }) => {
       // Canvas készítése html2canvas-szal
       const canvas = await html2canvas(exportRef.current, {
         scale: 2,
-        useCORS: true,
-        allowTaint: true,
         backgroundColor: '#ffffff',
+        useCORS: true,
         ignoreElements: (element) => {
-          // Skip elements that might cause oklch issues
-          return element.tagName === 'STYLE';
-        },
-        onclone: (clonedDoc) => {
-          // Convert oklch colors to hex/rgb equivalents
-          const styleElements = clonedDoc.getElementsByTagName('style');
-          for (let i = 0; i < styleElements.length; i++) {
-            let css = styleElements[i].textContent || '';
-            // Replace oklch colors with hex equivalents
-            css = css.replace(/oklch\([^)]+\)/g, (match) => {
-              // Common oklch to hex conversions for your app
-              if (match.includes('0.76 0.17 174')) return '#01918C'; // teal color
-              if (match.includes('0.4 0.1 220')) return '#4b5563'; // gray
-              if (match.includes('0.9 0.02 106')) return '#f3f4f6'; // light gray
-              return '#ffffff'; // fallback to white
-            });
-            styleElements[i].textContent = css;
-          }
+          return element.classList && element.classList.contains('no-export');
         }
       });
 
