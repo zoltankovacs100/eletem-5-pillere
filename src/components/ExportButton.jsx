@@ -7,36 +7,44 @@ const ExportButton = ({ exportRef }) => {
     if (!exportRef.current) return;
 
     try {
-      // A4 landscape méret mm-ben (297 x 210)
+      console.log('Starting PDF export...');
+      
+      // Canvas készítése html2canvas-szal
+      const canvas = await html2canvas(exportRef.current, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff'
+      });
+
+      console.log('Canvas created:', canvas.width, 'x', canvas.height);
+
+      const imgData = canvas.toDataURL('image/png');
+      
+      // A4 landscape méret: 297mm x 210mm
       const pdf = new jsPDF({
         orientation: 'landscape',
         unit: 'mm',
         format: 'a4'
       });
 
-      // Canvas készítése html2canvas-szal
-      const canvas = await html2canvas(exportRef.current, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: false,
-        backgroundColor: '#ffffff',
-        width: exportRef.current.scrollWidth,
-        height: exportRef.current.scrollHeight
-      });
-
-      const imgData = canvas.toDataURL('image/png');
-      
-      // A4 landscape méret: 297mm x 210mm
       const pdfWidth = 297;
       const pdfHeight = 210;
       
-      // Kép méretezése hogy fit to page legyen, aspect ratio megtartásával
+      // Kép méretezése hogy fit to page legyen
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;
-      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
       
-      const finalWidth = imgWidth * ratio;
-      const finalHeight = imgHeight * ratio;
+      // Pixel to mm konverzió (96 DPI esetén)
+      const pixelToMm = 0.264583;
+      const imgWidthMm = imgWidth * pixelToMm;
+      const imgHeightMm = imgHeight * pixelToMm;
+      
+      // Méretezési arány számítása
+      const ratio = Math.min(pdfWidth / imgWidthMm, pdfHeight / imgHeightMm);
+      
+      const finalWidth = imgWidthMm * ratio;
+      const finalHeight = imgHeightMm * ratio;
       
       // Középre igazítás
       const xOffset = (pdfWidth - finalWidth) / 2;
@@ -44,8 +52,11 @@ const ExportButton = ({ exportRef }) => {
 
       pdf.addImage(imgData, 'PNG', xOffset, yOffset, finalWidth, finalHeight);
       pdf.save('eletem-5-pillere.pdf');
+      
+      console.log('PDF saved successfully!');
     } catch (err) {
       console.error('PDF export failed:', err);
+      alert('Hiba a PDF mentés során: ' + err.message);
     }
   };
 
