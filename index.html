@@ -8,6 +8,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
     <title>Életem 5 pillére</title>
+    <script>
+      function sendHeight() {
+        const height = document.body.scrollHeight;
+        window.parent.postMessage({ type: 'resize', height: height }, '*');
+      }
+
+      window.addEventListener('load', sendHeight);
+      new MutationObserver(sendHeight).observe(document.body, { childList: true, subtree: true });
+      window.addEventListener('resize', sendHeight);
+    </script>
   </head>
   <body>
     <div id="root"></div>
