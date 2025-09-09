@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// Force update: 2025-01-09 - Complete rewrite: Two independent sliders with color coding
+// Force update: 2025-01-09 - Layout fine-tuning: spacing, margins, slider height
 
 const Scale = ({ scaleName }) => {
   const [currentValue, setCurrentValue] = useState(0);
@@ -45,11 +45,11 @@ const Scale = ({ scaleName }) => {
       </div>
 
       {/* Controls */}
-      <div className="flex flex-col gap-3 items-center text-gray-800 bg-gray-50 border rounded-lg p-4 w-full">
+      <div className="flex flex-col gap-3 items-center text-gray-800 bg-gray-50 border rounded-lg px-6 py-4 w-full">
         
         {/* Jelenlegi - Light Green */}
-        <div className="flex items-center gap-2 w-full">
-          <label className="text-xs font-bold" style={{ color: lightAccentColor, minWidth: '55px' }}>
+        <div className="flex items-center gap-1 w-full">
+          <label className="text-xs font-bold" style={{ color: lightAccentColor, minWidth: '50px' }}>
             Jelenlegi
           </label>
           <input
@@ -61,6 +61,7 @@ const Scale = ({ scaleName }) => {
             className="flex-1"
             style={{
               accentColor: lightAccentColor,
+              height: '20px',
             }}
           />
           <input
@@ -69,13 +70,13 @@ const Scale = ({ scaleName }) => {
             max={MAX}
             value={currentValue}
             onChange={(e) => setCurrentValue(Number(e.target.value))}
-            className="w-12 border-gray-300 border rounded px-1 py-0.5 text-center text-xs"
+            className="w-12 border-gray-300 border rounded px-0.5 py-0.5 text-center text-xs"
           />
         </div>
 
         {/* Vágyott - Dark Green */}
-        <div className="flex items-center gap-2 w-full">
-          <label className="text-xs font-bold" style={{ color: accentColor, minWidth: '55px' }}>
+        <div className="flex items-center gap-1 w-full">
+          <label className="text-xs font-bold" style={{ color: accentColor, minWidth: '50px' }}>
             Vágyott
           </label>
           <input
@@ -87,6 +88,7 @@ const Scale = ({ scaleName }) => {
             className="flex-1"
             style={{
               accentColor: accentColor,
+              height: '20px',
             }}
           />
           <input
@@ -95,7 +97,7 @@ const Scale = ({ scaleName }) => {
             max={MAX}
             value={desiredValue}
             onChange={(e) => setDesiredValue(Number(e.target.value))}
-            className="w-12 border-gray-300 border rounded px-1 py-0.5 text-center text-xs"
+            className="w-12 border-gray-300 border rounded px-0.5 py-0.5 text-center text-xs"
           />
         </div>
       </div>
