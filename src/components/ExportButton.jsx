@@ -2,6 +2,8 @@ import React from 'react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas-pro';
 
+// Force update: 2025-01-09 - Improved PDF export with 20mm margins and fit-to-page
+
 const ExportButton = ({ exportRef }) => {
   const handleExport = async () => {
     if (!exportRef.current) return;
@@ -9,11 +11,16 @@ const ExportButton = ({ exportRef }) => {
     try {
       console.log('Starting PDF export...');
       
-      // Canvas készítése html2canvas-szal
+      // Canvas készítése html2canvas-szal - javított beállítások
       const canvas = await html2canvas(exportRef.current, {
-        scale: 2,
+        scale: 3, // Magasabb felbontás
         backgroundColor: '#ffffff',
         useCORS: true,
+        allowTaint: true,
+        foreignObjectRendering: true,
+        logging: false,
+        width: exportRef.current.scrollWidth,
+        height: exportRef.current.scrollHeight,
         ignoreElements: (element) => {
           return element.classList && element.classList.contains('no-export');
         }
@@ -42,15 +49,32 @@ const ExportButton = ({ exportRef }) => {
       const imgWidthMm = imgWidth * pixelToMm;
       const imgHeightMm = imgHeight * pixelToMm;
       
-      // Méretezési arány számítása
-      const ratio = Math.min(pdfWidth / imgWidthMm, pdfHeight / imgHeightMm);
+      // Nagyobb margók beállítása (20mm minden oldalon)
+      const margin = 20;
+      const availableWidth = pdfWidth - (2 * margin);
+      const availableHeight = pdfHeight - (2 * margin);
+      
+      // Méretezési arány számítása - fit to page nagyobb margókkal
+      const ratio = Math.min(availableWidth / imgWidthMm, availableHeight / imgHeightMm);
       
       const finalWidth = imgWidthMm * ratio;
       const finalHeight = imgHeightMm * ratio;
       
-      // Középre igazítás
-      const xOffset = (pdfWidth - finalWidth) / 2;
-      const yOffset = (pdfHeight - finalHeight) / 2;
+      // Középre igazítás a margókkal
+      const xOffset = margin + (availableWidth - finalWidth) / 2;
+      const yOffset = margin + (availableHeight - finalHeight) / 2;
+      
+      console.log('PDF dimensions with margins:', { 
+        pdfWidth, 
+        pdfHeight, 
+        margin, 
+        availableWidth, 
+        availableHeight, 
+        finalWidth, 
+        finalHeight, 
+        xOffset, 
+        yOffset 
+      });
 
       pdf.addImage(imgData, 'PNG', xOffset, yOffset, finalWidth, finalHeight);
       pdf.save('eletem-5-pillere.pdf');

@@ -4,7 +4,8 @@ import ExportButton from './components/ExportButton.jsx';
 import { useRef } from 'react';
 import { toPng } from 'html-to-image';
 
-// Force update: 2025-01-09 - UI improvements: button order, roof position, responsive grid
+// Force update: 2025-01-09 - Fix PDF export layout: responsive SVG and flexbox
+// Force update: 2025-01-09 - Compact layout for 14" monitors with improved PDF margins
 
 
 
@@ -13,10 +14,11 @@ function App() {
   const exportRef = useRef();
   return (
 
-    <div ref={exportRef} className="w-full flex flex-col items-center p-4">
+    <div ref={exportRef} className="w-full flex flex-col items-center p-4 bg-white min-h-screen">
       
-      <div className="w-full h-[100px] flex justify-center">
-        <svg width="1160" height="80" viewBox="0 0 1160 80" className="max-w-full mx-auto block">
+      {/* Háromszög teteje - pillérek szélességéhez igazított */}
+      <div className="w-full h-[60px] flex justify-center items-center mb-4">
+        <svg width="900" height="60" viewBox="0 0 1160 80" className="block" preserveAspectRatio="xMidYMid meet">
           <defs>
             <pattern
               id="roofStripes"
@@ -39,7 +41,7 @@ function App() {
       </div>
       
       <div className="w-full flex justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6 max-w-7xl">
+        <div className="flex flex-wrap justify-center gap-3 max-w-5xl">
           <Scale scaleName="Fizikai, egészségi állapot"/>
           <Scale scaleName="Kapcsolatok" />
           <Scale scaleName="Munkával való elégedettség" />
