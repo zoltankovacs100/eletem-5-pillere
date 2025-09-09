@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 
-// Force update: 2025-01-09 - Set default values to [0, 0]
+// Force update: 2025-01-09 - Swap button order: Vágyott top, Jelenlegi bottom
 
 const Scale = ({ scaleName }) => {
   const [values, setValues] = useState([0, 0]);
@@ -50,23 +50,6 @@ const Scale = ({ scaleName }) => {
       <div className="flex flex-col gap-4 items-center text-gray-800 bg-gray-50 border rounded-lg p-4 w-full">
         <div className="flex gap-4">
           <div className="flex flex-col items-center">
-            <label className="text-xs mb-1 font-bold">Jelenlegi</label>
-            <input
-              type="number"
-              min={MIN}
-              max={values[1]}
-              value={values[0]}
-              onChange={(e) =>
-                setValues([
-                  Math.min(Number(e.target.value), values[1]),
-                  values[1],
-                ])
-              }
-              className="w-20 border-gray-300 border rounded px-2 py-1 text-center text-gray-800"
-            />
-          </div>
-
-          <div className="flex flex-col items-center">
             <label className="text-xs mb-1 font-bold">Vágyott</label>
             <input
               type="number"
@@ -77,6 +60,23 @@ const Scale = ({ scaleName }) => {
                 setValues([
                   values[0],
                   Math.max(Number(e.target.value), values[0]),
+                ])
+              }
+              className="w-20 border-gray-300 border rounded px-2 py-1 text-center text-gray-800"
+            />
+          </div>
+
+          <div className="flex flex-col items-center">
+            <label className="text-xs mb-1 font-bold">Jelenlegi</label>
+            <input
+              type="number"
+              min={MIN}
+              max={values[1]}
+              value={values[0]}
+              onChange={(e) =>
+                setValues([
+                  Math.min(Number(e.target.value), values[1]),
+                  values[1],
                 ])
               }
               className="w-20 border-gray-300 border rounded px-2 py-1 text-center text-gray-800"

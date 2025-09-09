@@ -4,7 +4,7 @@ import ExportButton from './components/ExportButton.jsx';
 import { useRef } from 'react';
 import { toPng } from 'html-to-image';
 
-// Force update: 2025-01-09 - Fix roof triangle top cutoff and default values
+// Force update: 2025-01-09 - UI improvements: button order, roof position, responsive grid
 
 
 
@@ -15,8 +15,8 @@ function App() {
 
     <div ref={exportRef} className="w-full flex flex-col items-center p-4">
       
-      <div className="w-full h-[100px]">
-        <svg width="100%" viewBox="0 0 1160 80" className="max-w-[1160px] mx-auto block">
+      <div className="w-full h-[100px] flex justify-center">
+        <svg width="1160" height="80" viewBox="0 0 1160 80" className="max-w-full mx-auto block">
           <defs>
             <pattern
               id="roofStripes"
@@ -39,7 +39,7 @@ function App() {
       </div>
       
       <div className="w-full flex justify-center">
-        <div className="flex flex-col lg:flex-row gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6 max-w-7xl">
           <Scale scaleName="Fizikai, egészségi állapot"/>
           <Scale scaleName="Kapcsolatok" />
           <Scale scaleName="Munkával való elégedettség" />
