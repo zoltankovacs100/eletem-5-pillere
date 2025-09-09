@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// Force update: 2025-01-09 - Correct fix: keep 250px width, smaller sliders, compact
+// Force update: 2025-01-09 - Restore original pillar visualization logic
 
 const Scale = ({ scaleName }) => {
   const [currentValue, setCurrentValue] = useState(0);
@@ -32,12 +32,12 @@ const Scale = ({ scaleName }) => {
               backgroundColor: lightAccentColor,
             }}
           />
-          {/* "Desired" value bar - dark green, starts from current */}
+          {/* "Desired" value bar - dark green, above current */}
           <div
             className="absolute left-0 w-full"
             style={{
-              bottom: `${Math.min(currentValue, desiredValue)}%`,
-              height: `${Math.abs(desiredValue - currentValue)}%`,
+              bottom: `${currentValue}%`,
+              height: `${Math.max(0, desiredValue - currentValue)}%`,
               backgroundColor: accentColor,
             }}
           />
