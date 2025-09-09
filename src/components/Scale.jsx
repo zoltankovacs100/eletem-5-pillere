@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// Force update: 2025-01-09 - Layout fine-tuning: spacing, margins, slider height
+// Force update: 2025-01-09 - Proper layout fix: wider container, closer labels, number display
 
 const Scale = ({ scaleName }) => {
   const [currentValue, setCurrentValue] = useState(0);
@@ -12,7 +12,7 @@ const Scale = ({ scaleName }) => {
   const accentColor = '#01918C';
   const lightAccentColor = '#02c7c0';
   return (
-    <div className="w-[250px] flex-shrink-0 flex flex-col items-center gap-4 bg-white p-4 rounded-md shadow-lg">
+    <div className="w-[270px] flex-shrink-0 flex flex-col items-center gap-4 bg-white p-4 rounded-md shadow-lg">
       
       {/* Pillar visualization with green border/container */}
       <div 
@@ -45,7 +45,7 @@ const Scale = ({ scaleName }) => {
       </div>
 
       {/* Controls */}
-      <div className="flex flex-col gap-3 items-center text-gray-800 bg-gray-50 border rounded-lg px-6 py-4 w-full">
+      <div className="flex flex-col gap-3 items-center text-gray-800 bg-gray-50 border rounded-lg px-4 py-3 w-full">
         
         {/* Jelenlegi - Light Green */}
         <div className="flex items-center gap-1 w-full">
@@ -64,14 +64,9 @@ const Scale = ({ scaleName }) => {
               height: '20px',
             }}
           />
-          <input
-            type="number"
-            min={MIN}
-            max={MAX}
-            value={currentValue}
-            onChange={(e) => setCurrentValue(Number(e.target.value))}
-            className="w-12 border-gray-300 border rounded px-0.5 py-0.5 text-center text-xs"
-          />
+          <span className="w-8 text-center text-sm font-bold" style={{ color: lightAccentColor }}>
+            {currentValue}
+          </span>
         </div>
 
         {/* Vágyott - Dark Green */}
@@ -91,14 +86,9 @@ const Scale = ({ scaleName }) => {
               height: '20px',
             }}
           />
-          <input
-            type="number"
-            min={MIN}
-            max={MAX}
-            value={desiredValue}
-            onChange={(e) => setDesiredValue(Number(e.target.value))}
-            className="w-12 border-gray-300 border rounded px-0.5 py-0.5 text-center text-xs"
-          />
+          <span className="w-8 text-center text-sm font-bold" style={{ color: accentColor }}>
+            {desiredValue}
+          </span>
         </div>
       </div>
 
