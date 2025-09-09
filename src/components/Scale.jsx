@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 
-// Force update: 2025-01-09 - Strict slider validation prevents all crossing and sticking
+// Force update: 2025-01-09 - Fix slider thumb z-index: Jelenlegi on top, Vágyott below
 
 const Scale = ({ scaleName }) => {
   const [values, setValues] = useState([0, 0]);
@@ -146,7 +146,10 @@ const Scale = ({ scaleName }) => {
                 </div>
               </div>
             )}
-            renderThumb={({ props }) => {
+            renderThumb={({ props, index }) => {
+              // index 0 = Jelenlegi (should be on bottom/lower z-index)
+              // index 1 = Vágyott (should be on top/higher z-index)
+              const isDesired = index === 1;
               return (
                 <div
                   {...props}
@@ -158,6 +161,7 @@ const Scale = ({ scaleName }) => {
                     backgroundColor: '#FFF',
                     border: `2px solid ${accentColor}`,
                     boxShadow: '0px 2px 6px #AAA',
+                    zIndex: isDesired ? 5 : 10, // Jelenlegi on top, Vágyott below
                   }}
                 />
               );
