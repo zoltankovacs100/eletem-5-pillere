@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 
-// Force update: 2025-01-09 - Fix input order and prevent slider overlap
+// Force update: 2025-01-09 - Strict slider validation prevents all crossing and sticking
 
 const Scale = ({ scaleName }) => {
   const [values, setValues] = useState([0, 0]);
@@ -9,15 +9,28 @@ const Scale = ({ scaleName }) => {
   const MIN = 0;
   const MAX = 100;
 
-  // Safe range change handler that prevents overlap
+  // Strict range change handler that prevents all overlap and crossing
   const handleRangeChange = (newValues) => {
-    const [current, desired] = newValues;
-    // Ensure current <= desired
-    if (current <= desired) {
-      setValues([current, desired]);
+    const [newCurrent, newDesired] = newValues;
+    const [oldCurrent, oldDesired] = values;
+    
+    // Determine which handle was moved by comparing with previous values
+    const currentMoved = newCurrent !== oldCurrent;
+    const desiredMoved = newDesired !== oldDesired;
+    
+    if (currentMoved && !desiredMoved) {
+      // Current handle moved - ensure it doesn't go above desired
+      const safeCurrent = Math.min(newCurrent, oldDesired);
+      setValues([safeCurrent, oldDesired]);
+    } else if (desiredMoved && !currentMoved) {
+      // Desired handle moved - ensure it doesn't go below current
+      const safeDesired = Math.max(newDesired, oldCurrent);
+      setValues([oldCurrent, safeDesired]);
     } else {
-      // If they try to cross over, keep them at the same level
-      setValues([Math.min(current, desired), Math.max(current, desired)]);
+      // Both moved (shouldn't happen normally) - maintain order
+      const safeCurrent = Math.min(newCurrent, newDesired);
+      const safeDesired = Math.max(newCurrent, newDesired);
+      setValues([safeCurrent, safeDesired]);
     }
   };
 
