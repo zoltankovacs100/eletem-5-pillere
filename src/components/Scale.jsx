@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// Force update: 2025-01-09 - Restore original pillar visualization logic
+// Force update: 2025-01-09 - Widen pillar container: w-6 → w-8
 
 const Scale = ({ scaleName }) => {
   const [currentValue, setCurrentValue] = useState(0);
@@ -22,7 +22,7 @@ const Scale = ({ scaleName }) => {
           padding: '15px'
         }}
       >
-        <div className="relative w-6 h-64 rounded-sm overflow-hidden bg-gray-200">
+        <div className="relative w-8 h-64 rounded-sm overflow-hidden bg-gray-200">
           {/* "Current" value bar - light green */}
           <div
             className="absolute left-0 w-full"
