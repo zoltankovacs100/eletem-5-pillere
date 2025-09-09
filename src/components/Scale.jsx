@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 
+// Force update: 2025-01-09 - Set default values to [0, 0]
+
 const Scale = ({ scaleName }) => {
-  const [values, setValues] = useState([35, 65]);
+  const [values, setValues] = useState([0, 0]);
   const STEP = 1;
   const MIN = 0;
   const MAX = 100;
