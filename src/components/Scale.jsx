@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 
-// Force update: 2025-01-09 - Swap button order: Vágyott top, Jelenlegi bottom
+// Force update: 2025-01-09 - Fix input order and prevent slider overlap
 
 const Scale = ({ scaleName }) => {
   const [values, setValues] = useState([0, 0]);
   const STEP = 1;
   const MIN = 0;
   const MAX = 100;
+
+  // Safe range change handler that prevents overlap
+  const handleRangeChange = (newValues) => {
+    const [current, desired] = newValues;
+    // Ensure current <= desired
+    if (current <= desired) {
+      setValues([current, desired]);
+    } else {
+      // If they try to cross over, keep them at the same level
+      setValues([Math.min(current, desired), Math.max(current, desired)]);
+    }
+  };
 
   const accentColor = '#01918C';
   const lightAccentColor = '#02c7c0';
@@ -50,23 +62,6 @@ const Scale = ({ scaleName }) => {
       <div className="flex flex-col gap-4 items-center text-gray-800 bg-gray-50 border rounded-lg p-4 w-full">
         <div className="flex gap-4">
           <div className="flex flex-col items-center">
-            <label className="text-xs mb-1 font-bold">Vágyott</label>
-            <input
-              type="number"
-              min={values[0]}
-              max={MAX}
-              value={values[1]}
-              onChange={(e) =>
-                setValues([
-                  values[0],
-                  Math.max(Number(e.target.value), values[0]),
-                ])
-              }
-              className="w-20 border-gray-300 border rounded px-2 py-1 text-center text-gray-800"
-            />
-          </div>
-
-          <div className="flex flex-col items-center">
             <label className="text-xs mb-1 font-bold">Jelenlegi</label>
             <input
               type="number"
@@ -82,6 +77,23 @@ const Scale = ({ scaleName }) => {
               className="w-20 border-gray-300 border rounded px-2 py-1 text-center text-gray-800"
             />
           </div>
+
+          <div className="flex flex-col items-center">
+            <label className="text-xs mb-1 font-bold">Vágyott</label>
+            <input
+              type="number"
+              min={values[0]}
+              max={MAX}
+              value={values[1]}
+              onChange={(e) =>
+                setValues([
+                  values[0],
+                  Math.max(Number(e.target.value), values[0]),
+                ])
+              }
+              className="w-20 border-gray-300 border rounded px-2 py-1 text-center text-gray-800"
+            />
+          </div>
         </div>
 
         <div className="w-40 pt-2 flex justify-center">
@@ -90,7 +102,7 @@ const Scale = ({ scaleName }) => {
             step={STEP}
             min={MIN}
             max={MAX}
-            onChange={setValues}
+            onChange={handleRangeChange}
             renderTrack={({ props, children }) => (
               <div
                 onMouseDown={props.onMouseDown}
